@@ -1,5 +1,5 @@
 import Hero from '../hero/Hero';
-import Header from '../hero/Header';
+import Header from '../header/Header';
 
 const Home = ({ movies }) => {
   return (
