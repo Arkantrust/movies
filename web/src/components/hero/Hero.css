@@ -1,10 +1,11 @@
 .movie-carousel-container {
-  width: 100vw;
+  width: 100%;
   background-color: black;
 }
 
 .movie-poster {
   height: 300px;
+  width: 200px;
   border: 1px solid gold;
   border-radius: 10px;
   overflow: hidden;
@@ -22,7 +23,7 @@
 
 .movie-card {
   background-repeat: no-repeat;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   background-size: cover;
   background-image: linear-gradient(
@@ -78,6 +79,6 @@
   .movie-detail {
     flex-direction: column;
     align-items: center;
-    top: 20px;
+    top: 40px;
   }
 }
