@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/home/Home';
+import Trailer from './components/trailer/Trailer';
 
 function App() {
 
@@ -28,9 +29,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home movies={movies} />}>
-
-          </Route>
+          <Route path="/" element={<Home movies={movies} />} ></Route>
+          <Route path="/trailers/:videoId" element={<Trailer />} ></Route>
         </Route>
       </Routes>
     </div>
