@@ -4,23 +4,23 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import ReviewForm from '../review_form/ReviewForm';
 
-function Reviews() {
+function Reviews({ getMovie, movie, setReviews, reviews }) {
 
-  const revText = useRef();
+  const reviewText = useRef();
   let params = useParams();
   const movieId = params.movieId; // imdbId
 
   useEffect(() => {
-    getMovieData();
+    getMovie();
   }, [])
 
   const addReview = async (e) => {
     e.preventDefault();
 
-    const rev = revText.current;
+    const rev = reviewText.current;
 
     try {
-      await api.post(`/v1/movies/${movieId}/reviews`, {
+      await api.post(`/v1/movies/${movie?.imdbId}/reviews`, {
         body: rev.value
       });
 
@@ -31,7 +31,6 @@ function Reviews() {
       console.error(err)
     }
   }
-
 
   return (
     <Container>
@@ -49,7 +48,7 @@ function Reviews() {
             <>
               <Row>
                 <Col>
-                  <ReviewForm handleSubmit={addReview} revText={revText} labelText="Write a review!" />
+                  <ReviewForm handleSubmit={addReview} reviewText={reviewText} labelText="Write a review!" />
                 </Col>
               </Row>
               <Row>
@@ -60,10 +59,10 @@ function Reviews() {
             </>
           }
           {
-            reviews?.map((r) => (
-              <Row key={r.id}>
+            reviews?.map((review) => (
+              <Row key={review.id}>
                 <Col>
-                  <p>{r.body}</p>
+                  <p>{review.body}</p>
                 </Col>
               </Row>
             ))

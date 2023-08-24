@@ -27,7 +27,7 @@ function App() {
     try {
       const res = await api.get(`/v1/movies/${movieId}`);
       setMovie(res.data);
-      setReviews(movie?.reviews)
+      setReviews(res.data.reviews)
     } catch (err) {
       console.error(err)
     }
@@ -43,7 +43,11 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home movies={movies} />} ></Route>
           <Route path="/trailers/:videoId" element={<Trailer />} ></Route>
-          <Route path="/reviews/:movieId" element={<Reviews />} ></Route>
+          <Route path="/reviews/:movieId"
+            element={<Reviews
+              getMovie={getMovie} movie={movie}
+              setReviews={setReviews} reviews={reviews}
+            />} ></Route>
           <Route path="*" element={<NotFound />} ></Route>
         </Route>
       </Routes>
